@@ -163,9 +163,35 @@ def analyze_stock(ticker):
     for date, price in zip(recent_dates, recent_prices):
         print(f"  {date.strftime('%Y-%m-%d')}: ${price:.2f}")
 
-    print(f"\n{'='*60}")
-    print(f"  DISCLAIMER: This is not financial advice.")
+    print(f"\n  {'─'*56}")
+    print(f"  DISCLAIMER")
+    print(f"  {'─'*56}")
+    print(f"  This is not financial advice.")
     print(f"  Always do your own research before trading.")
+
+    # Final clear answer
+    print(f"\n{'='*60}")
+    if signal == "BUY":
+        print(f"\033[92m")  # Green
+        print(f"  FINAL ANSWER:  BUY")
+        print(f"")
+        print(f"  {company_name} ({ticker.upper()}) at ${current_price:.2f}")
+        print(f"  Upward momentum detected - consider buying")
+        print(f"\033[0m", end="")
+    elif signal == "SELL":
+        print(f"\033[91m")  # Red
+        print(f"  FINAL ANSWER:  SELL")
+        print(f"")
+        print(f"  {company_name} ({ticker.upper()}) at ${current_price:.2f}")
+        print(f"  Downward momentum detected - consider selling")
+        print(f"\033[0m", end="")
+    else:
+        print(f"\033[93m")  # Yellow
+        print(f"  FINAL ANSWER:  HOLD")
+        print(f"")
+        print(f"  {company_name} ({ticker.upper()}) at ${current_price:.2f}")
+        print(f"  No clear trend - consider holding")
+        print(f"\033[0m", end="")
     print(f"{'='*60}\n")
 
 
