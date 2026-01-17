@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+*.egg
+.venv/
+venv/
+ENV/
+
+# Generated data files
+python_version/ticks.csv
+python_version/strategy_output.csv
+
+# Simulation outputs
+verilog_version/sim
+verilog_version/*.vcd
+hw_log.txt
+
+# Generated documentation/plots
+docs/*.png
+
+# FPGA/EDA tool outputs
+*.log
+*.jou
+*.db
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Sanity test files
+sanity.v
+sanity.out
