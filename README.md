@@ -2,10 +2,38 @@
 
 A hardware/software co-design project implementing a dual EMA (Exponential Moving Average) crossover trading strategy in both Python (software reference) and Verilog (FPGA-ready RTL).
 
+## Live Trading Signals
+
+Get real-time BUY/SELL/HOLD signals for any stock:
+
+```bash
+python3 python_version/live_trading_signal.py AAPL
+python3 python_version/live_trading_signal.py TSLA
+python3 python_version/live_trading_signal.py NVDA
+```
+
+Example output:
+```
+============================================================
+  LIVE TRADING SIGNAL: AAPL
+============================================================
+
+  Company: Apple Inc.
+  Current Price:    $255.53
+
+  Fast EMA (12-day):  $261.94
+  Slow EMA (26-day):  $266.20
+
+  >>>  SELL  <<<
+
+  Reason: Fast EMA is BELOW Slow EMA (downward momentum)
+============================================================
+```
+
 ## Overview
 
 This project demonstrates low-latency trading signal generation using:
-- **Python**: Software reference implementation for prototyping and verification
+- **Python**: Live trading signals with real market data + software reference for verification
 - **Verilog**: Synthesizable RTL for FPGA deployment
 
 The strategy compares a fast-reacting EMA against a slow-reacting EMA to generate BUY/SELL signals based on crossover events.
@@ -31,6 +59,7 @@ When it crosses below, it signals downward momentum (SELL).
 ```
 fpga-ema-trading/
 ├── python_version/
+│   ├── live_trading_signal.py # Real-time signals for any stock
 │   ├── generate_ticks.py      # Generate synthetic price data
 │   ├── crossover_strategy.py  # Software EMA implementation
 │   ├── check_match.py         # HW vs SW verification
@@ -74,8 +103,8 @@ The hardware outputs a 2-bit signal using two's complement:
 
 ### Prerequisites
 
-- Python 3.x with `numpy`, `pandas`, `matplotlib`
-- Icarus Verilog (`iverilog`, `vvp`)
+- Python 3.x with `numpy`, `pandas`, `matplotlib`, `yfinance`
+- Icarus Verilog (`iverilog`, `vvp`) - for hardware simulation
 
 ### Installation
 
@@ -85,7 +114,7 @@ git clone https://github.com/adamsabbagh/fpga-ema-trading.git
 cd fpga-ema-trading
 
 # Install Python dependencies
-pip install numpy pandas matplotlib
+pip install numpy pandas matplotlib yfinance
 ```
 
 ### Running the Full Pipeline
